@@ -1,0 +1,9 @@
+{
+    "mfp" : {
+        "name": "test",
+        "protocol": "http",
+        "host": "192.168.1.1",
+        "port": "9080",
+        "servercred": "admin:admin"
+    }
+}
