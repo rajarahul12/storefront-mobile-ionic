@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="topMenu">
+      <ion-title ng-href="https://www.ibm.com/devops/method/category/architectures/" target="_blank">IBM Cloud Architecture</ion-title>  
+  </ion-navbar>
+</ion-header>
+<ion-content >
+    <h2 style="text-align:center;">
+      {{card.title}}
+    </h2>
+  <ion-row>
+    <ion-card>
+      <img [src]="card.imageUrl" />
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small icon-left (click)="favorite(card)">
+            <ion-icon name='pricetag'></ion-icon>
+            $10000
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-row>
+    <div style="padding-inline: 1.5em;">
+      <h4>
+        Product Description
+      </h4>
+        <p>
+          {{card.description}}
+        </p>
+    </div>
+   
+</ion-content>
