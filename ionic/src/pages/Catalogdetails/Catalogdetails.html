@@ -5,16 +5,16 @@
 </ion-header>
 <ion-content >
     <h2 style="text-align:center;">
-      {{card.title}}
+      {{card.name}}
     </h2>
   <ion-row>
     <ion-card>
-      <img [src]="card.imageUrl" />
+      <img src="build/assets/items/{{card.img}}" />
       <ion-row no-padding>
         <ion-col>
           <button ion-button clear small icon-left (click)="favorite(card)">
             <ion-icon name='pricetag'></ion-icon>
-            $10000
+            ${{card.price}}
           </button>
         </ion-col>
       </ion-row>
