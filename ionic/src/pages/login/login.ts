@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, App, Tabs } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
 
@@ -11,7 +11,7 @@ export class LoginPage {
   password: string;
   loginError = false;
 
-  constructor(public navCtrl: NavController, public restService : BlueApiServiceProvider, private app : App) {
+  constructor(public zone: NgZone, public navCtrl: NavController, public restService : BlueApiServiceProvider, private app : App) {
 
   }
 
@@ -23,11 +23,13 @@ export class LoginPage {
       password: this.password
     }
     this.restService.loginUser(payload, (response) => {
-     console.log("Login Result" + JSON.stringify(response))
-     this.restService.userState.accessToken = response.responseJSON.access_token
-     this.restService.userState.authenticated = true;
-     const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
-     tabsNav.select(1);
+      this.zone.run(() => {
+        console.log("Login Result" + JSON.stringify(response))
+        this.restService.userState.accessToken = response.responseJSON.access_token
+        this.restService.userState.authenticated = true;
+        const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
+        tabsNav.select(1);
+      });
     }, (error) => {
       console.log("Login Error: " + JSON.stringify(error));
       this.password = "";

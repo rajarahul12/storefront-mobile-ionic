@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
 import { App, Tabs, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
 /**
@@ -15,19 +15,18 @@ import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-ap
 })
 export class LogoutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restService: BlueApiServiceProvider, private app: App, private cd: ChangeDetectorRef) {
+  constructor(private zone:NgZone, public navCtrl: NavController, public navParams: NavParams, public restService: BlueApiServiceProvider, private app: App, private cd: ChangeDetectorRef) {
     
   }
 
   ionViewWillEnter() {
+    this.zone.run(() => {
+      this.restService.userState.accessToken = null;
+      this.restService.userState.authenticated = false;
       const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
       tabsNav.select(1);
       this.cd.detectChanges()
-  }
-
-  ionViewDidEnter() {
-    this.restService.userState.accessToken = null;
-    this.restService.userState.authenticated = false;
+    });  
   }
 
 }
