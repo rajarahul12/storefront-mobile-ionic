@@ -22,5 +22,7 @@ export class TabsPage {
   constructor(private navCtrl: NavController, public restService : BlueApiServiceProvider, private app: App) {
   }
 
+
+//(ionSelect)="getData()"
   
  }

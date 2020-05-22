@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, Slides, Platform } from 'ionic-angular';
 import { CatalogdetailsPage } from '../Catalogdetails/Catalogdetails';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
@@ -10,9 +10,11 @@ import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-ap
 export class CatalogPage {
   cards;
 
-  constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider) { 
+  constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider, public zone: NgZone) { 
     this.restService.getCatalog((data) => {
-      this.cards = data.responseJSON;
+      this.zone.run(() => {
+        this.cards = data.responseJSON;
+      })
     }, (error) => {
       alert("Failure : " + JSON.stringify(error))
     })
