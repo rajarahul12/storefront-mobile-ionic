@@ -12,7 +12,6 @@ export class CatalogPage {
 
   constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider) { 
     this.restService.getCatalog((data) => {
-      alert("succf : " + JSON.stringify(data.responseJSON))
       this.cards = data.responseJSON;
     }, (error) => {
       alert("Failure : " + JSON.stringify(error))

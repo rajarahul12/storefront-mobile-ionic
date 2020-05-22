@@ -19,7 +19,7 @@
           <div style="margin-top: 3rem;">
               <button ion-button block (click)="login()">Sign in</button>
           </div>
-          <div ng-show="loginError" class="content is-center" style="color: red;">
+          <div [hidden]="!loginError" class="content is-center" style="color: red;">
             * Invalid user information, please sign in again.
           </div>
       </form>

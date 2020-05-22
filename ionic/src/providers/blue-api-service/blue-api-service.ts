@@ -10,9 +10,21 @@ import { Injectable } from '@angular/core';
 export class BlueApiServiceProvider {
 
   baseURL = "http://web-bluecompute.apps.mfstorefront.os.fyre.ibm.com/";
+  clientId = "bluecomputeweb"
+  clientSecret = "bluecomputewebs3cret"
+
+  public userState = {
+    accessToken : null,
+    authenticated: false
+  };
 
   constructor() {
     console.log('Hello BlueApiServiceProvider Provider');
+  }
+
+  logout() {
+    this.userState.accessToken = null;
+    this.userState.authenticated = false;
   }
   getCatalog(successCallback, errorCallback) {
     var restUrl = this.baseURL + 'catalog/';
@@ -84,12 +96,13 @@ export class BlueApiServiceProvider {
       resourceRequest.send().then(successCallback, errorCallback);
     }
     else {
-      var basicAuthToken = "asdfdas"//CONFIG["Auth-Server"].client_id + ":" + CONFIG["Auth-Server"].client_secret;
-      var authToken = "asdfads"//'Basic ' + $base64.encode(basicAuthToken);
+      var basicAuthToken = this.clientId + ":" + this.clientSecret;
+      var authToken = 'Basic ' + btoa(basicAuthToken);
       console.log("BasiAuth of " + basicAuthToken + " 64 encoded token: " + authToken);
       console.log("with Url parameter: " + JSON.stringify(parameters));
       resourceRequest = new WLResourceRequest(restUrl, WLResourceRequest.POST);
       resourceRequest.addHeader("Authorization", authToken);
+      resourceRequest.addHeader("Content-Type", 'application/x-www-form-urlencoded')
       resourceRequest.sendFormParameters(parameters).then(successCallback, errorCallback);
     }
   }
