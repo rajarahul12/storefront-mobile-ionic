@@ -51,7 +51,8 @@ export class BlueApiServiceProvider {
     this.invokeService(restUrl, requestType, parameters, successCallback, errorCallback);
   }
 
-  buyItems(access_token, parameters, successCallback, errorCallback) {
+  buyItems(parameters, successCallback, errorCallback) {
+    var access_token = this.userState.accessToken;
     var restUrl = this.baseURL + 'order/';
     var requestType = 'POST_AUTH';
     this.invokeService(restUrl, requestType, parameters, successCallback, errorCallback, access_token);
@@ -63,7 +64,8 @@ export class BlueApiServiceProvider {
     this.invokeService(restUrl, requestType, parameters, successCallback, errorCallback, access_token);
   }
 
-  getCustomerProfile(access_token, successCallback, errorCallback) {
+  getCustomerProfile(successCallback, errorCallback) {
+    var access_token = this.userState.accessToken;
     var restUrl = this.baseURL + 'customer/';
     var requestType = 'GET_AUTH';
     this.invokeService(restUrl, requestType, null, successCallback, errorCallback, access_token);

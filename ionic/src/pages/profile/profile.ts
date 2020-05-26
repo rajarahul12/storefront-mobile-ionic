@@ -23,6 +23,11 @@ export class ProfilePage {
 
   ngOnInit() {
     console.log('ionViewDidLoad ProfilePage');
+    this.restService.getCustomerProfile((data) => {
+      alert(JSON.stringify(data))
+    }, (error) => {
+      console.log("getCustomerProfile Error" + JSON.stringify(error))
+    })
     this.restService.getCatalog((data) => {
       var catalogMap = {};
       var catalog = data.responseJSON;

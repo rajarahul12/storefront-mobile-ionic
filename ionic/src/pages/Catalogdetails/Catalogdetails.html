@@ -20,6 +20,26 @@
       </ion-row>
     </ion-card>
   </ion-row>
+  <div style="padding-left: 1.5em;padding-right: 1.5em;">
+    <h4>
+      Place your order here
+    </h4>
+    <ion-row no-padding>
+      <ion-col>
+        <ion-select [(ngModel)]="quantity" (ionChange)="setQuantity(quantity)"  placeholder="0">
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+          <ion-option value="5">5</ion-option>
+         </ion-select>
+      </ion-col>
+      <ion-col text-right>
+         <button (click)="buyItem()" ion-button>Buy</button>
+      </ion-col>
+    </ion-row>
+  </div>
+ 
     <div style="padding-left: 1.5em;padding-right: 1.5em;">
       <h4>
         Product Description
