@@ -1,7 +1,0 @@
-{
-  "name": "storefront",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
