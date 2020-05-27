@@ -4,7 +4,7 @@ Storefront Ionic Mobile Application
 The sample Ionic mobile application is built to demonstrate how to access the Omnichannel APIs hosted on Kubernetes Environment. The application provides the basic function to allow user to browse the catalog items, make an order and review profile.
 
 ![Storefront Screenshot](screenshot.jpg)
-s
+
 ### Pre-requisites
 - Ionic CLI Version 5.4.16
 - IBM MobileFirst Platform Foundation 8.0
