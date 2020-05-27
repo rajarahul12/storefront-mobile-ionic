@@ -28,7 +28,6 @@ export class ProfilePage {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewDidLoad ProfilePage');
     this.restService.getCustomerProfile((data) => {
       console.log("getCustomerProfile Success" + JSON.stringify(data))
       this.zone.run(() => {

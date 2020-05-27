@@ -5,7 +5,7 @@ import { DataStore } from './dataStore';
 import { MyApp } from './app.component';
 
 import { CatalogPage } from '../pages/catalog/catalog';
-import { CatalogdetailsPage } from '../pages/Catalogdetails/Catalogdetails';
+import { CatalogdetailsPage } from '../pages/catalogdetails/catalogdetails';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';

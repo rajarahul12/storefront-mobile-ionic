@@ -19,7 +19,6 @@ export class BlueApiServiceProvider {
   };
 
   constructor() {
-    console.log('Hello BlueApiServiceProvider Provider');
   }
 
   logout() {
@@ -45,7 +44,6 @@ export class BlueApiServiceProvider {
   }
 
   loginUser(parameters, successCallback, errorCallback) {
-    //var restUrl = this.baseURL + CONFIG["Auth-Server"].protocol + '://' + CONFIG["Auth-Server"].host + '/oauth/token'
     var restUrl = this.baseURL + 'oauth/token'
     var requestType = 'POST';
     this.invokeService(restUrl, requestType, parameters, successCallback, errorCallback);
@@ -102,8 +100,6 @@ export class BlueApiServiceProvider {
     else {
       var basicAuthToken = this.clientId + ":" + this.clientSecret;
       var authToken = 'Basic ' + btoa(basicAuthToken);
-      console.log("BasiAuth of " + basicAuthToken + " 64 encoded token: " + authToken);
-      console.log("with Url parameter: " + JSON.stringify(parameters));
       resourceRequest = new WLResourceRequest(restUrl, WLResourceRequest.POST);
       resourceRequest.addHeader("Authorization", authToken);
       resourceRequest.addHeader("Content-Type", 'application/x-www-form-urlencoded')

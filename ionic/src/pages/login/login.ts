@@ -11,7 +11,7 @@ export class LoginPage {
   password: string;
   loginError = false;
 
-  constructor(public zone: NgZone, public navCtrl: NavController, public restService : BlueApiServiceProvider, private app : App) {
+  constructor(public zone: NgZone, public navCtrl: NavController, public restService: BlueApiServiceProvider, private app: App) {
 
   }
 
@@ -38,7 +38,7 @@ export class LoginPage {
         this.password = "";
         this.loginError = true;
       });
-  });
+    });
   }
 
 }

@@ -2,9 +2,7 @@ import { Component, Renderer, NgZone } from '@angular/core';
 import {
   NavController,
   NavParams,
-  Platform,
-  Alert,
-  AnimationOptions
+  Platform
 } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
 

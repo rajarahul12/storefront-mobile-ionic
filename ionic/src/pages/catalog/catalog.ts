@@ -1,6 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, Slides, Platform } from 'ionic-angular';
-import { CatalogdetailsPage } from '../Catalogdetails/Catalogdetails';
+import { CatalogdetailsPage } from '../catalogdetails/catalogdetails';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
 
 @Component({
