@@ -20,7 +20,7 @@
       </ion-row>
     </ion-card>
   </ion-row>
-  <div style="padding-left: 1.5em;padding-right: 1.5em;">
+  <div [hidden]="!this.restService.userState.authenticated" style="padding-left: 1.5em;padding-right: 1.5em;">
     <h4>
       Place your order here
     </h4>

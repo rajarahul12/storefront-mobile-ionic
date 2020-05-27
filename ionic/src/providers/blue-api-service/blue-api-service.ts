@@ -96,7 +96,8 @@ export class BlueApiServiceProvider {
     } else if (requestType == 'POST_AUTH') {
       resourceRequest = new WLResourceRequest(restUrl, WLResourceRequest.POST);
       resourceRequest.addHeader("Authorization", 'Bearer ' + access_token);
-      resourceRequest.send().then(successCallback, errorCallback);
+      resourceRequest.addHeader("Content-Type", 'application/x-www-form-urlencoded')
+      resourceRequest.sendFormParameters(parameters).then(successCallback, errorCallback);
     }
     else {
       var basicAuthToken = this.clientId + ":" + this.clientSecret;

@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 import { CatalogPage } from '../catalog/catalog';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
-import { LogoutPage } from '../logout/logout';
 import { ProfilePage } from '../profile/profile';
 import { App, Tabs, NavController } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
@@ -17,12 +16,17 @@ export class TabsPage {
   tab2Root = CatalogPage;
   tab3Root = LoginPage;
   tab4Root = ProfilePage;
-  tab5Root = LogoutPage;
 
-  constructor(private navCtrl: NavController, public restService : BlueApiServiceProvider, private app: App) {
+  constructor(private zone: NgZone, private navCtrl: NavController, public restService : BlueApiServiceProvider, private app: App) {
   }
 
-
-//(ionSelect)="getData()"
+  logout() {
+    this.zone.run(() => {
+      this.restService.userState.accessToken = null;
+      this.restService.userState.authenticated = false;
+      const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
+      tabsNav.select(1);
+    });  
+  }
   
  }

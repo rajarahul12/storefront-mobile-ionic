@@ -17,14 +17,23 @@ import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-ap
 export class ProfilePage {
 
   ordersData = [];
+  customerInfo = {
+    username: "guest",
+    firstName: "Guest",
+    lastName: "Guest",
+    email: "guest@email.com"
+  };
 
   constructor(public zone: NgZone, public navCtrl: NavController, public navParams: NavParams, private restService: BlueApiServiceProvider) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad ProfilePage');
     this.restService.getCustomerProfile((data) => {
-      alert(JSON.stringify(data))
+      console.log("getCustomerProfile Success" + JSON.stringify(data))
+      this.zone.run(() => {
+        this.customerInfo = data.responseJSON[0]
+      })
     }, (error) => {
       console.log("getCustomerProfile Error" + JSON.stringify(error))
     })
@@ -39,6 +48,7 @@ export class ProfilePage {
         this.zone.run(() => {
           console.log("Get Orders Result" + response.responseJSON)
           var ordersInfo = response.responseJSON;
+          this.ordersData = [];
           for (let i = 0; i < ordersInfo.length; i++) {
             let o = ordersInfo[i];
             this.ordersData.push({ date: o.date, itemId: o.itemId, itemName: catalogMap[o.itemId], count: o.count });

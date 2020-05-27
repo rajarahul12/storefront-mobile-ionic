@@ -10,7 +10,6 @@ import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LiveUpdateProvider } from '../providers/live-update/live-update';
-import { LogoutPage } from '../pages/logout/logout';
 import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,7 +25,6 @@ import { BlueApiServiceProvider } from '../providers/blue-api-service/blue-api-s
     HomePage,
     TabsPage,
     ProfilePage,
-    LogoutPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +37,6 @@ import { BlueApiServiceProvider } from '../providers/blue-api-service/blue-api-s
     CatalogdetailsPage,
     LoginPage,
     HomePage,
-    LogoutPage,
     ProfilePage,
     TabsPage
   ],

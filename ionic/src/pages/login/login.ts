@@ -27,13 +27,17 @@ export class LoginPage {
         console.log("Login Result" + JSON.stringify(response))
         this.restService.userState.accessToken = response.responseJSON.access_token
         this.restService.userState.authenticated = true;
+        this.password = "";
+        this.loginError = false;
         const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
         tabsNav.select(1);
       });
     }, (error) => {
-      console.log("Login Error: " + JSON.stringify(error));
-      this.password = "";
-      this.loginError = true;
+      this.zone.run(() => {
+        console.log("Login Error: " + JSON.stringify(error));
+        this.password = "";
+        this.loginError = true;
+      });
   });
   }
 

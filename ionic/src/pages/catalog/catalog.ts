@@ -11,6 +11,10 @@ export class CatalogPage {
   cards;
 
   constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider, public zone: NgZone) { 
+    
+  }
+
+  ionViewWillEnter() {
     this.restService.getCatalog((data) => {
       this.zone.run(() => {
         this.cards = data.responseJSON;
