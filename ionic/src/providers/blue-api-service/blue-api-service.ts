@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BlueApiServiceProvider {
 
-  baseURL = "http://web-bluecompute.apps.mfstorefront.os.fyre.ibm.com/";
+  baseURL = "http://192.168.1.5:3000/";
   clientId = "bluecomputeweb"
   clientSecret = "bluecomputewebs3cret"
 
