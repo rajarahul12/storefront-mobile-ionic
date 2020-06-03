@@ -56,5 +56,13 @@
     {
       "name": "analytics"
     }
+  ],
+  "confidentialClients": [
+    {
+      "id": "SampleClient",
+      "secret": "12345",
+      "allowedScope": "clients:read-public clients:read-protected update",
+      "displayName": "SampleClient"
+    }
   ]
 }
