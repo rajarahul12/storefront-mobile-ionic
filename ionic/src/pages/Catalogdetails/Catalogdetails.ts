@@ -5,6 +5,7 @@ import {
   Platform
 } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
+import { UtilsProvider } from '../../providers/utils/utils'
 
 @Component({
   selector: 'page-Catalogdetails',
@@ -20,7 +21,8 @@ export class CatalogdetailsPage {
     public navParams: NavParams,
     public platform: Platform,
     private restService: BlueApiServiceProvider,
-    private zone:NgZone
+    private zone:NgZone,
+    private utils: UtilsProvider
   ) {
     this.card = navParams.data.cardDetails;
   }
@@ -32,19 +34,21 @@ export class CatalogdetailsPage {
 
   buyItem() {
     if(this.itemQuantity > 0) {
+      this.utils.presentLoading()
       var payload = {
         itemId: this.card["id"],
         count: this.itemQuantity
       }
       this.restService.buyItems(payload, (response) => {
-          console.log("Buy Item Resultt" + JSON.stringify(response))
           this.zone.run(() => {
-            alert("Ordered placed successfully")
+            this.utils.dismissLoading()
+            alert("Ordered request sent")
             this.quantity = null;
           })
       }, (error) => {
         console.log("Buy Item Error: " + JSON.stringify(error));
         this.zone.run(() => {
+          this.utils.dismissLoading()
           alert("Failed to place an order. Error : " + JSON.stringify(error))
           this.quantity = null;
         })

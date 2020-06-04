@@ -2,6 +2,7 @@ import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, Slides, Platform } from 'ionic-angular';
 import { CatalogdetailsPage } from '../catalogdetails/catalogdetails';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service';
+import { UtilsProvider } from '../../providers/utils/utils'
 
 @Component({
   selector: 'page-catalog',
@@ -10,16 +11,19 @@ import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-ap
 export class CatalogPage {
   cards;
 
-  constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider, public zone: NgZone) { 
+  constructor(public navCtrl: NavController, private restService: BlueApiServiceProvider, public zone: NgZone, private utils: UtilsProvider) { 
     
   }
 
   ionViewWillEnter() {
+    this.utils.presentLoading()
     this.restService.getCatalog((data) => {
       this.zone.run(() => {
         this.cards = data.responseJSON;
+        this.utils.dismissLoading()
       })
     }, (error) => {
+      this.utils.dismissLoading()
       alert("Failure : " + JSON.stringify(error))
     })
   }
