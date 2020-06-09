@@ -1,5 +1,4 @@
 {
-  "type": "ionic",  
   "platforms" : [ 
       { 
           "applicationKey": {    
@@ -7,7 +6,7 @@
               "clientPlatform":"android",
               "packageName":"com.ibm.storefront"
           },
-          "appName":"StoreFront",
+          "displayName":"StoreFront",
       "scopeElementMapping": {
       "push.mobileclient": "",
   "liveupdate.mobileclient": ""
