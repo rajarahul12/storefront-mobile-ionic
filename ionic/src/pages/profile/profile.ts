@@ -31,9 +31,9 @@ export class ProfilePage {
   ionViewWillEnter() {
     this.utils.presentLoading()
     this.restService.getCustomerProfile((data) => {
+      this.utils.dismissLoading()
       console.log("getCustomerProfile Success" + JSON.stringify(data))
       this.zone.run(() => {
-        this.utils.dismissLoading()
         this.customerInfo = data.responseJSON[0]
       })
     }, (error) => {
@@ -58,7 +58,6 @@ export class ProfilePage {
           }
         })
       }, (error) => {
-        
         console.log("error" + JSON.stringify(error))
       })
     }, (error) => {
