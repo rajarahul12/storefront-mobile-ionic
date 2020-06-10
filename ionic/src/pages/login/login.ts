@@ -11,45 +11,46 @@ export class LoginPage {
   username: string;
   password: string;
   loginError = false;
+  private BlueAuthChallengeHandler: WL.Client.SecurityCheckChallengeHandler;
 
   constructor(public zone: NgZone, public navCtrl: NavController, public restService: BlueApiServiceProvider, private app: App, private utils: UtilsProvider) {
-
+    this.registerChallengeHandler()
   }
 
   login() {
     this.utils.presentLoading()
-    var payload = {
-      grant_type: 'password',
-      scope: 'blue',
+    WLAuthorizationManager.login('BlueAuthLogin', {
       username: this.username,
       password: this.password
-    }
-    this.restService.loginUser(payload, (response) => {
-      this.zone.run(() => {
-        console.log("Login Result" + JSON.stringify(response))
-        this.restService.userState.accessToken = response.responseJSON.access_token
-        this.restService.userState.authenticated = true;
-        this.registerUserwithMFP();
-      });
-    }, (error) => {
+    }).then((response) => {
+      console.log("Login Result" + JSON.stringify(response))
+      this.restService.userState.authenticated = true;
+      this.initializePush()
+    }, error => {
       this.zone.run(() => {
         this.utils.dismissLoading()
         console.log("Login Error: " + JSON.stringify(error));
         this.password = "";
         this.loginError = true;
       });
-    });
+    })
   }
 
-  parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+  registerChallengeHandler() {
+    this.BlueAuthChallengeHandler = WL.Client.createSecurityCheckChallengeHandler("BlueAuthLogin");
+    this.BlueAuthChallengeHandler.handleChallenge = ((response: any) => {
+      console.log('BlueAuthChallengeHandler.handleChallenge called. Error : ' + response.errorMsg);
+      this.BlueAuthChallengeHandler.cancel()
+    });
 
-    return JSON.parse(jsonPayload)['user_name'];
-  };
+    this.BlueAuthChallengeHandler.handleFailure = (error: any) => {
+      console.log('Login Failed : ' + JSON.stringify(error));
+    };
+    this.BlueAuthChallengeHandler.handleSuccess = (response: any) => {
+      console.log('Login Success : ' + JSON.stringify(response));
+      this.restService.userState.accessToken = response.user.attributes.access_token;
+    };
+  }
 
   navigateToCatalog() {
     this.password = "";
@@ -59,32 +60,20 @@ export class LoginPage {
     tabsNav.select(1);
   }
 
-
-  registerUserwithMFP() {
-    var userID = this.parseJwt(this.restService.userState.accessToken)
-    WLAuthorizationManager.login('UserLogin', {
-      username: userID,
-      password: userID
-    }).then(() => {
-      this.initializePush()
-    }, error => {
-      this.navigateToCatalog()
-      console.log("UserLogin Failed : " + JSON.stringify(error))
-    })
-  }
-
   initializePush() {
     MFPPush.initialize(
-      (successResponse) => {
+      () => {
         MFPPush.registerNotificationsCallback(this.notificationReceived);
         WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
-          (accessToken) => {
+          () => {
             this.utils.dismissLoading()
             MFPPush.registerDevice(null, this.successCallback, this.failureCallback);
+          }, () => {
+            this.navigateToCatalog()
           }
         );
       },
-      (failureResponse) => {
+      () => {
         this.navigateToCatalog()
         console.log("Failed to initialize");
       }

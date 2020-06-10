@@ -9,9 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BlueApiServiceProvider {
 
-  baseURL = "http://192.168.1.5:3000/";
-  clientId = "bluecomputeweb"
-  clientSecret = "bluecomputewebs3cret"
+  baseURL = "http://web-bluecompute.apps.mfstorefront.os.fyre.ibm.com/";
 
   public userState = {
     accessToken : null,
@@ -94,14 +92,6 @@ export class BlueApiServiceProvider {
     } else if (requestType == 'POST_AUTH') {
       resourceRequest = new WLResourceRequest(restUrl, WLResourceRequest.POST);
       resourceRequest.addHeader("Authorization", 'Bearer ' + access_token);
-      resourceRequest.addHeader("Content-Type", 'application/x-www-form-urlencoded')
-      resourceRequest.sendFormParameters(parameters).then(successCallback, errorCallback);
-    }
-    else {
-      var basicAuthToken = this.clientId + ":" + this.clientSecret;
-      var authToken = 'Basic ' + btoa(basicAuthToken);
-      resourceRequest = new WLResourceRequest(restUrl, WLResourceRequest.POST);
-      resourceRequest.addHeader("Authorization", authToken);
       resourceRequest.addHeader("Content-Type", 'application/x-www-form-urlencoded')
       resourceRequest.sendFormParameters(parameters).then(successCallback, errorCallback);
     }
