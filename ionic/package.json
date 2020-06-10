@@ -32,7 +32,7 @@
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-ionic-keyboard": "2.1.3",
     "cordova-plugin-ionic-webview": "^4.2.1",
-    "cordova-plugin-mfp": "^8.0.2019070909",
+    "cordova-plugin-mfp": "^8.0.2020052707",
     "cordova-plugin-mfp-analytics": "^8.0.2020032412",
     "cordova-plugin-mfp-push": "^8.0.2020040305",
     "cordova-plugin-okhttp": "^2.0.0",
