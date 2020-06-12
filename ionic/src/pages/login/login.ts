@@ -21,7 +21,8 @@ export class LoginPage {
     this.utils.presentLoading()
     WLAuthorizationManager.login('BlueAuthLogin', {
       username: this.username,
-      password: this.password
+      password: this.password,
+      scope: 'Blue'
     }).then((response) => {
       console.log("Login Result" + JSON.stringify(response))
       this.restService.userState.authenticated = true;
@@ -64,14 +65,7 @@ export class LoginPage {
     MFPPush.initialize(
       () => {
         MFPPush.registerNotificationsCallback(this.notificationReceived);
-        WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
-          () => {
-            this.utils.dismissLoading()
-            MFPPush.registerDevice(null, this.successCallback, this.failureCallback);
-          }, () => {
-            this.navigateToCatalog()
-          }
-        );
+        MFPPush.registerDevice(null, this.successCallback, this.failureCallback)
       },
       () => {
         this.navigateToCatalog()

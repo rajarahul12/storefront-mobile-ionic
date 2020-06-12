@@ -71,11 +71,12 @@ public class BlueAuthLoginSecurityCheck extends UserAuthenticationSecurityCheck 
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
+        if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password") && credentials.containsKey("scope")){
 
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
-            if(username!="" && password!="") {
+            String scope = credentials.get("scope").toString();
+            if(username!="" && password!="" && scope!="") {
 
                 //Optional RememberMe
                 if(credentials.containsKey("rememberMe") ){
@@ -84,7 +85,7 @@ public class BlueAuthLoginSecurityCheck extends UserAuthenticationSecurityCheck 
                 errorMsg = null;
 
                 try{
-                    String response = validCredentialswithBlueAuthServer(username,password);
+                    String response = validCredentialswithBlueAuthServer(username,password, scope);
 
                     if(response!=null){
 
@@ -140,7 +141,7 @@ public class BlueAuthLoginSecurityCheck extends UserAuthenticationSecurityCheck 
         return rememberMe;
     }
 
-    public String validCredentialswithBlueAuthServer(String username, String password) throws IOException, IllegalStateException, SAXException, URISyntaxException {
+    public String validCredentialswithBlueAuthServer(String username, String password, String scope) throws IOException, IllegalStateException, SAXException, URISyntaxException {
 
         HttpPost request = new HttpPost(getConfiguration().authURL);
         String auth = getConfiguration().clientID + ":" + getConfiguration().clientSecret;
@@ -148,7 +149,7 @@ public class BlueAuthLoginSecurityCheck extends UserAuthenticationSecurityCheck 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("username", username));
         params.add(new BasicNameValuePair("password", password));
-        params.add(new BasicNameValuePair("scope", "blue"));
+        params.add(new BasicNameValuePair("scope", scope));
         params.add(new BasicNameValuePair("grant_type", "password"));
 
         request.setEntity(new UrlEncodedFormEntity(params));
