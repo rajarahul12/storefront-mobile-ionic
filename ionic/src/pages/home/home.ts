@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { NavController, App, Tabs } from 'ionic-angular';
 
 @Component({
@@ -7,7 +7,10 @@ import { NavController, App, Tabs } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private app: App) {
+  constructor(public renderer: Renderer, public navCtrl: NavController, private app: App) {
+    renderer.listenGlobal('document', 'mfpjsloaded', () => {
+      WL.Analytics.enable();
+    });
   }
 
   navigateToCatalog() {

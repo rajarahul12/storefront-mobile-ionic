@@ -15,6 +15,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BlueApiServiceProvider } from '../providers/blue-api-service/blue-api-service';
+import { UtilsProvider } from '../providers/utils/utils';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BlueApiServiceProvider } from '../providers/blue-api-service/blue-api-s
     DataStore,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BlueApiServiceProvider,
-    LiveUpdateProvider
+    LiveUpdateProvider,
+    UtilsProvider
   ]
 })
 export class AppModule {}

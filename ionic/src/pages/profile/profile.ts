@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BlueApiServiceProvider } from '../../providers/blue-api-service/blue-api-service'
+import { UtilsProvider } from '../../providers/utils/utils'
 
 /**
  * Generated class for the ProfilePage page.
@@ -24,16 +25,19 @@ export class ProfilePage {
     email: "guest@email.com"
   };
 
-  constructor(public zone: NgZone, public navCtrl: NavController, public navParams: NavParams, private restService: BlueApiServiceProvider) {
+  constructor(public zone: NgZone, public navCtrl: NavController, public navParams: NavParams, private restService: BlueApiServiceProvider, private utils: UtilsProvider) {
   }
 
   ionViewWillEnter() {
+    this.utils.presentLoading()
     this.restService.getCustomerProfile((data) => {
+      this.utils.dismissLoading()
       console.log("getCustomerProfile Success" + JSON.stringify(data))
       this.zone.run(() => {
         this.customerInfo = data.responseJSON[0]
       })
     }, (error) => {
+      this.utils.dismissLoading()
       console.log("getCustomerProfile Error" + JSON.stringify(error))
     })
     this.restService.getCatalog((data) => {
