@@ -11,7 +11,8 @@ import { LoadingController } from 'ionic-angular';
 export class UtilsProvider {
 
   private loading =  this.loadingController.create({
-    content: 'Please wait...'
+    content: 'Please wait...',
+    duration: 5000
   });
 
   constructor(private loadingController: LoadingController) {
@@ -19,7 +20,8 @@ export class UtilsProvider {
 
   async presentLoading() {
     this.loading = this.loadingController.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      duration: 5000
     });
     this.loading.present();
   }
