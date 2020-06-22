@@ -22,7 +22,7 @@ export class LoginPage {
     WLAuthorizationManager.login('BlueAuthLogin', {
       username: this.username,
       password: this.password,
-      scope: 'Blue'
+      scope: 'blue'
     }).then((response) => {
       console.log("Login Result" + JSON.stringify(response))
       this.restService.userState.authenticated = true;
