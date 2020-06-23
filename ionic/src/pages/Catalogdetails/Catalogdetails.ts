@@ -37,7 +37,8 @@ export class CatalogdetailsPage {
       this.utils.presentLoading()
       var payload = {
         itemId: this.card["id"],
-        count: this.itemQuantity
+        count: this.itemQuantity,
+        notifyMobile: 'true'
       }
       this.restService.buyItems(payload, (response) => {
           this.zone.run(() => {
