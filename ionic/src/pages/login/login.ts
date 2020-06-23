@@ -58,7 +58,7 @@ export class LoginPage {
     this.loginError = false;
     this.utils.dismissLoading()
     const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
-    tabsNav.select(1);
+    tabsNav.select(0);
   }
 
   initializePush() {

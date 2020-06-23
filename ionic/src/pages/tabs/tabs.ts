@@ -29,7 +29,7 @@ export class TabsPage {
       this.restService.userState.accessToken = null;
       this.restService.userState.authenticated = false;
       const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
-      tabsNav.select(1);
+      tabsNav.select(0);
     });  
   }
 
