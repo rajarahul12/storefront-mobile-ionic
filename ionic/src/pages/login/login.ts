@@ -54,14 +54,17 @@ export class LoginPage {
   }
 
   navigateToCatalog() {
-    this.password = "";
-    this.loginError = false;
-    this.utils.dismissLoading()
-    const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
-    tabsNav.select(0);
+    this.zone.run(() => {
+      this.password = "";
+      this.loginError = false;
+      this.utils.dismissLoading()
+      const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
+      tabsNav.select(0);
+    });
   }
 
   initializePush() {
+    this.navigateToCatalog()
     MFPPush.initialize(
       () => {
         MFPPush.registerNotificationsCallback(this.notificationReceived);
