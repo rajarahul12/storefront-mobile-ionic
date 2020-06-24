@@ -54,21 +54,23 @@ export class LoginPage {
   }
 
   navigateToCatalog() {
-    this.password = "";
-    this.loginError = false;
-    this.utils.dismissLoading()
-    const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
-    tabsNav.select(0);
+    this.zone.run(() => {
+      this.password = "";
+      this.loginError = false;
+      this.utils.dismissLoading()
+      const tabsNav = this.app.getNavByIdOrName('mainTab') as Tabs;
+      tabsNav.select(0);
+    });
   }
 
   initializePush() {
+    this.navigateToCatalog()
     MFPPush.initialize(
       () => {
         MFPPush.registerNotificationsCallback(this.notificationReceived);
         MFPPush.registerDevice(null, this.successCallback, this.failureCallback)
       },
       () => {
-        this.navigateToCatalog()
         console.log("Failed to initialize");
       }
     );
@@ -83,13 +85,11 @@ export class LoginPage {
   };
 
   successCallback = (response) => {
-    this.navigateToCatalog()
-    console.log("Success: " + JSON.stringify(response));
+    console.log("Push Registration Success: " + JSON.stringify(response));
   };
 
   failureCallback = (response) => {
-    this.navigateToCatalog()
-    console.log("Error: " + JSON.stringify(response));
+    console.log("Push Registration Error: " + JSON.stringify(response));
   };
 }
 
