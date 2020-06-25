@@ -6,10 +6,34 @@ This is a IBM Mobile Foundation based Ionic Mobile Application frontend to the s
 ![Storefront Screenshot](screenshot.jpg)
 
 ### Pre-requisites
-- Ionic CLI Version 5.4.16
-- Storefront server components installed and running - microservices, dependent DBs, IBM Mobile Foundation 
+- Ionic CLI Version 5.4.16 - https://ionicframework.com/docs/cli
+- Storefront server components installed and running - microservices, dependent DBs, IBM Mobile Foundation
+- IBM Mobile Foundation CLI - https://www.npmjs.com/package/mfpdev-cli
 
 ### Usage
+1. Ensure that the Storefront services including Mobile Foundation services are deployed and running
+2. Clone this repo locally and change current working directory to storefront-mobile-ionic
+```
+git clone git@github.com:ibm-garage-ref-storefront/storefront-mobile-ionic.git
+cd storefront-mobile-ionic
+```
+3. If you are setting up Storefront services for the first time or have reset it then you will need to configure Mobile Foundation services for this StoreFront mobile application as follows: -
+    - This StoreFront Mobile Application is designed to receive Push Notifications about the progress of StoreFront order shippments. To enable Mobile Foundation Push Notifications service for this application you must configure the service for Push Notification Credentials (FCM, APNS).  Edit `mfpconfig/app_config.json` file and update it for these credentials under json object `services.push.settings`.  To know more about what these settings and credentials are about lookup https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notifications/sending-notifications/#setting-up-notifications 
+    - All other required configurations are already preset into `mfpconfig/app_config.json` file
+    - Edit `mfpconfig/server_config.json` and input the endpoint url, port and admin credentials for the Mobile Foundation Server
+    - Save `mfpconfig/server_config.json` and `mfpconfig/app_config.json` files
+    - From the root of this repo clone i.e. from the directory storefront-mobile-ionic run the following command
+      ```
+      mfpdev app register
+      ``` 
+      and you must see the following output
+      ```
+      Registering to server:'http://<mobile foundation endpoint url>:<port>' runtime:'mfp'
+      Registered app for platform: android
+      Registered app for platform: ios
+      ```
+
+
 1. Edit ionic/config.xml file and update the element <mfp:server runtime="mfp" url="<url for mobile foundation server" /> for the url endpoint of the Mobile Foundation server
 2. From a command-line window, navigate to the project's root folder and run the commands:
     - `cd ionic` - to navigate to application folder
