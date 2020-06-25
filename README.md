@@ -5,6 +5,11 @@ This is a IBM Mobile Foundation based Ionic Mobile Application frontend to the s
 
 ![Storefront Screenshot](screenshot.jpg)
 
+## Component Interaction Design
+IBM Mobile Foundation is positioned as the mobile gateway to the StoreFront providing mobile app and device security over and above the Storefront user authentication and authorization.  All calls to from the mobile app to the Storefront backend services are made via Mobile Foundation to exploit this comprehensive security. The Storefront backend services are registered with Mobile Foundation as confidential clients with appropriate allowed scopes to enable them to invoke the Send Push Notifications API.
+
+![MFInteractions](MFInteraction.png)
+
 ### Pre-requisites
 - Ionic CLI Version 5.4.16 - https://ionicframework.com/docs/cli
 - Storefront server components installed and running - microservices, dependent DBs, IBM Mobile Foundation
