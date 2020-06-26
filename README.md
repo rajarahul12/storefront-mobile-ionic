@@ -25,7 +25,7 @@ cd storefront-mobile-ionic
 3. If you are setting up Storefront services for the first time or have reset it then you will need to configure Mobile Foundation services for this StoreFront mobile application as follows: -
     - This StoreFront Mobile Application is designed to receive Push Notifications about the progress of StoreFront order shippments. To enable Mobile Foundation Push Notifications service for this application you must configure the service for Push Notification Credentials (FCM, APNS).  Edit `mfpconfig/app_config.json` file and update it for these credentials under json object `services.push.settings`.  To know more about what these settings and credentials are about lookup https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notifications/sending-notifications/#setting-up-notifications 
     - All other required configurations are already preset into `mfpconfig/app_config.json` file
-    - To enable push notification on Android remember to add google-services.json into the directory `ionic` 
+    - To enable push notification on Android remember to replace `google-services.json` into the directory `ionic` 
     - Edit `mfpconfig/server_config.json` and input the endpoint url, port and admin credentials for the Mobile Foundation Server
     - Save `mfpconfig/server_config.json` and `mfpconfig/app_config.json` files
     - From the root of this repo clone i.e. from the directory storefront-mobile-ionic run the following command
