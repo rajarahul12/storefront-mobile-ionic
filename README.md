@@ -38,12 +38,30 @@ cd storefront-mobile-ionic
       Registered app for platform: android
       Registered app for platform: ios
       ```
+    -  Edit `adapter/BlueAuthLogin/config.json` and input the token endpoint url, client id and client secret of the storefront microservice
+   - Save `adapter/BlueAuthLogin/config.json` file
+   - From the directory `adapter/BlueAuthLogin` run the following command to deploy an Blue Auth Adapter
+   		- ```mfpdev adapter deploy```
+      	- ```mfpdev adapter push```
+  		and you must see the following output
+   	   ```
+     	locahost:BlueAuthLogin user$ mfpdev adapter deploy
+		Verifying server configuration...
+		Deploying adapter to runtime mfp on http://localhost:9080/mfpadmin...
+		Successfully deployed adapter
+		user:BlueAuthLogin user$ mfpdev adapter push
+		Verifying server configuration...
+		Pushing adapter configuration to runtime mfp on http://localhost:9080/mfpadmin...
+		Successfully pushed adapter configuration
+      ``` 
+
+
 Now all the storefront services are up and running and Mobile Fountation is also configured.
 
-4. Edit ionic/config.xml file and update the element <mfp:server runtime="mfp" url="<url for mobile foundation server" /> for the url endpoint of the Mobile Foundation server
+4. Edit `ionic/config.xml` file and update the element <mfp:server runtime="mfp" url="<url for mobile foundation server" /> for the url endpoint of the Mobile Foundation server
 5. From a command-line window, navigate to the project's root folder and run the commands:
     - `cd ionic` - to navigate to application folder
-    - `ionic cordova platform add ios` or `ionic cordova platform add androids` - to add a platform.
+    - `ionic cordova platform add ios` or `ionic cordova platform add android` - to add a platform.
     - `ionic cordova run` - to run the application.
 
 6. Run the application to view the catalog, make an order and review the user profile.

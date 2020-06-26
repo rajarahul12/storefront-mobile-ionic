@@ -47,4 +47,7 @@ npm-debug.log*
 
 # Maven
 log/
-target/
+ibm/adapterGenerator/mfp-adapters-swagger-codegen/target/
+*.class
+adapter/BlueAuthLogin/target/adapter/
+adapter/BlueAuthLogin/target/maven-status/
