@@ -3,7 +3,7 @@ Storefront Ionic Mobile Application
 ## Overview
 This is a IBM Mobile Foundation based Ionic Mobile Application frontend to the storefront application.  The application allows mobile app users to browse the storefront catalog items, make an order and review profile.
 
-![Storefront Screenshot](images/screenshot.png)
+![Storefront Screenshot](images/mobile-screenshot.png)
 
 ## Component Interaction Design
 IBM Mobile Foundation is positioned as the mobile gateway to the StoreFront providing mobile app and device security over and above the Storefront user authentication and authorization.  All calls to from the mobile app to the Storefront backend services are made via Mobile Foundation to exploit this comprehensive security. The Storefront backend services are registered with Mobile Foundation as confidential clients with appropriate allowed scopes to enable them to invoke the Send Push Notifications API.
