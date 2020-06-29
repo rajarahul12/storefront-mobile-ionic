@@ -113,7 +113,7 @@
         </mfp:security>
     </mfp:android>
     <mfp:ios>
-        <mfp:sdkChecksum>1001895199</mfp:sdkChecksum>
+        <mfp:sdkChecksum>966930037</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -140,7 +140,7 @@
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20200531-153252</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20200517-153333</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
     <mfp:server runtime="mfp" url="http://192.168.1.5:9080" />
     <mfp:serverUri url="" />

@@ -34,7 +34,6 @@ export class TabsPage {
   }
 
   setActiveTab(currentTab: string): void {
-    this.previoustab = currentTab;
     WL.Analytics.log(
       {
         fromPage: this.previoustab,
@@ -42,6 +41,7 @@ export class TabsPage {
       },
       'PageTransition'
     );
+    this.previoustab = currentTab;
   }
   
  }
