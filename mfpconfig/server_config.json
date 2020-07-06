@@ -2,7 +2,7 @@
     "mfp" : {
         "name": "test",
         "protocol": "http",
-        "host": "192.168.1.1",
+        "host": "storefront-mf-bluecompute.rahultestocp-c33bf0f22ab59313b3628c493e016b88-0000.us-south.containers.appdomain.cloud",
         "port": "9080",
         "servercred": "admin:admin"
     }
