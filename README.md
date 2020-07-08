@@ -1,7 +1,7 @@
 Storefront Ionic Mobile Application
 ===
 ## Overview
-This is a IBM Mobile Foundation based Ionic Mobile Application frontend to the storefront application.  The application allows mobile app users to browse the storefront catalog items, make an order and review profile.
+This is a IBM Mobile Foundation based Ionic Mobile Application frontend to the storefront application.  The application allows mobile app users to browse the storefront catalog items, make an order and review profile. Test
 
 ![Storefront Screenshot](images/mobile-screenshot.png)
 
